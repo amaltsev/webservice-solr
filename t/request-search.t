@@ -24,7 +24,7 @@ my ( $expect_path, $expect_params );
 
 {
     $expect_path = '/solr/select';
-    $expect_params = { q => 'foo', wt => 'json' };
+    $expect_params = { q => 'foo', wt => 'json', echoParams => 'explicit' };
     is $solr->last_response, undef, "The last_response attribute hasn't been set yet";
     $solr->search( 'foo' );
     isa_ok $solr->last_response, 'WebService::Solr::Response';

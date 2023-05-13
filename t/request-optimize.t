@@ -29,17 +29,21 @@ for (
     )
 {
     $opt = $_;
-    $solr->commit( $_ );
+    $solr->optimize( $_ );
 }
 
 sub _test_req {
-    is( $_[ 2 ]->path, '/solr/update', 'commit() path' );
-    is_deeply( { $_[ 2 ]->query_form }, { wt => 'json' }, 'commit() params' );
+    is( $_[ 2 ]->path, '/solr/update', 'optimize() path' );
+    is_deeply(
+        { $_[ 2 ]->query_form },
+        { wt => 'json', echoParams => 'explicit' },
+        'optimize() params'
+    );
     is( $_[ 3 ]->header( 'Content_Type' ),
         'text/xml; charset=utf-8',
-        'commit() headers'
+        'optimize() headers'
     );
     my $struct = XMLin( $_[ 4 ], KeepRoot => 1 );
-    is_deeply( $struct, { commit => $opt }, 'commit() xml' );
+    is_deeply( $struct, { optimize => $opt }, 'optimize() xml' );
 }
 

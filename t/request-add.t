@@ -32,7 +32,7 @@ my $expect;
 
 sub _test_req {
     is( $_[ 2 ]->path, '/solr/update', 'add() path' );
-    is_deeply( { $_[ 2 ]->query_form }, { wt => 'json' }, 'add() params' );
+    is_deeply( { $_[ 2 ]->query_form }, { wt => 'json', echoParams => 'explicit' }, 'add() params' );
     is_deeply(
         $_[ 3 ]->header( 'Content_Type' ),
         'text/xml; charset=utf-8',

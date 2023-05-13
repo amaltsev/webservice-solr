@@ -43,7 +43,7 @@ has 'last_response' => (
     isa => Maybe[InstanceOf['WebService::Solr::Response']],
 );
 
-our $VERSION = '0.43';
+our $VERSION = '0.44.1';
 
 sub BUILDARGS {
     my ( $self, $url, $options ) = @_;
@@ -346,7 +346,7 @@ more details about the available options (http://wiki.apache.org/solr/TermsCompo
 =head2 commit( \%options )
 
 Sends a commit command. Returns true on success, false otherwise. You must do
-a commit after an add, update or delete. By default, autocommit is enabled. 
+a commit after an add, update or delete. By default, autocommit is enabled.
 You may disable autocommit to allow you to issue commit commands manually:
 
     my $solr = WebService::Solr->new( undef, { autocommit => 0 } );
@@ -400,13 +400,16 @@ own correspondingly named function (e.g. C<dataimport> ).
 
 =head1 AUTHORS
 
+Andy Lester C<andy@petdance.com>
+
 Brian Cassidy E<lt>bricas@cpan.orgE<gt>
 
 Kirk Beers
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2008-2017 National Adult Literacy Database
+Copyright 2008-2014 National Adult Literacy Database
+Copyright 2015-2020 Andy Lester
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.

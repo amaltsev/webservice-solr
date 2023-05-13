@@ -19,8 +19,7 @@ has 'raw_response' => (
     },
 );
 
-has 'content' =>
-    ( is => 'lazy', isa => HashRef );
+has 'content' => ( is => 'lazy', isa => HashRef );
 
 has 'docs' =>
     ( is => 'lazy', isa => ArrayRef );
@@ -31,17 +30,14 @@ around docs => sub {
     return wantarray ? @$ret : $ret;
 };
 
-has 'pager' =>
-    ( is => 'lazy', isa => Maybe[InstanceOf['Data::Page']] );
+has 'pager' => ( is => 'lazy', isa => Maybe[InstanceOf['Data::Page']] );
 
 has '_pageset_slide' =>
     ( is => 'rw', isa => Maybe[InstanceOf['Data::Pageset']], predicate => 1 );
-
 has '_pageset_fixed' =>
     ( is => 'rw', isa => Maybe[InstanceOf['Data::Pageset']], predicate => 1 );
 
-has 'params' =>
-    ( is => 'lazy', isa => HashRef );
+has 'params' => ( is => 'lazy', isa => HashRef );
 
 sub BUILDARGS {
     my ( $self, $res ) = @_;
@@ -274,11 +270,17 @@ Check if request parameter C<group> was set to true.
 
 =head2 grouped_docs( [I<group_field>] )
 
-The Solr results structure can differ greatly when using Result Grouping in search. Returns an array of L<WebService::Solr::Document> objects if grouped results were requested.  Documents are from the I<group_field> value. Otherwise, the first passed group.field Solr parameter value will be used.  The complete structure can always be retrieved via L<content> accessor.
+The Solr results structure can differ greatly when using Result Grouping
+in search. Returns an array of L<WebService::Solr::Document> objects if
+grouped results were requested.  Documents are from the I<group_field>
+value. Otherwise, the first passed group.field Solr parameter value will
+be used.  The complete structure can always be retrieved via L<content>
+accessor.
 
 =head2 groups( [I<group_field>] )
 
-If Solr Result Grouping is used, data from the response is returned of the I<group_field> value in groups or all groups are returned.
+If Solr Result Grouping is used, data from the response is returned of
+the I<group_field> value in groups or all groups are returned.
 
 =head2 spellcheck( )
 
@@ -294,13 +296,16 @@ Calls C<solr_status()> and check that it is equal to 0.
 
 =head1 AUTHORS
 
+Andy Lester C<andy@petdance.com>
+
 Brian Cassidy E<lt>bricas@cpan.orgE<gt>
 
 Kirk Beers
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2008-2017 National Adult Literacy Database
+Copyright 2008-2014 National Adult Literacy Database
+Copyright 2015-2020 Andy Lester
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
